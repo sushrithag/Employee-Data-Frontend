@@ -1,0 +1,10 @@
+.heading-custom{
+    background-color: #6666ff;
+    color: white;
+    font-weight: 100;
+    font-family: serif;
+}
+
+.navbar-brand.active {
+    font-weight: bold;
+}
