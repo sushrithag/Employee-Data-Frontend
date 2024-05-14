@@ -1,0 +1,23 @@
+<div class="container text-center">
+    <h3 *ngIf="authService.isLoggedIn()" class="text-primary">Welcome to Employee Portal</h3>
+</div>
+<br/>
+<div  *ngIf="!authService.isLoggedIn()" class="container w-50">
+    <h3>Sign Up</h3>
+    <div class="form">
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" [(ngModel)]="creds.email" required/>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="password" [(ngModel)]="creds.password" required/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <button class="btn btn-primary w-100" (click)="onSubmit()">Login</button>
+        </div>
+        
+    </div>
+</div>

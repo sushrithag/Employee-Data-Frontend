@@ -1,0 +1,38 @@
+<div *ngIf="myForm" class="my-modal">
+    <div class="container w-75 my-modal-content">
+    <h4>Employee Information</h4>
+    <br/>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input class="form-control bg-light" type="text" id="id" name="id" formControlName="id" readonly/>
+        </div>
+        <div class="form-group">
+            <label for="fn">First Name</label>
+            <input class="form-control" type="text" id="fn" name="firstName"  formControlName="firstName"/>
+            <div class="text-danger" *ngIf="myForm.get('firstName')?.invalid && myForm.get('firstName')?.touched">
+                <span *ngIf="myForm.get('firstName')?.errors?.['required']">First Name is required</span>
+                <span *ngIf="myForm.get('firstName')?.errors?.['minlength']">First Name is too short</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id">Last Name</label>
+            <input class="form-control" type="text" id="ln" name="lastName" formControlName="lastName"/>
+            <div class="text-danger" *ngIf="myForm.get('lastName')?.invalid && myForm.get('lastName')?.touched">
+                <span *ngIf="myForm.get('lastName')?.errors?.['required']">Last Name is required</span>
+                <span *ngIf="myForm.get('lastName')?.errors?.['minlength']">Last Name is too short</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="salary">Salary</label>
+            <input class="form-control" type="number" id="salary" name="salary" formControlName="salary"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <button class="btn btn-primary w-30" type="submit" [disabled]="myForm.invalid">Submit</button> &nbsp;
+            <button class="btn btn-success w-30" routerLink="/employees" >Cancel</button>
+        </div>
+
+    </form>
+</div>
+</div>

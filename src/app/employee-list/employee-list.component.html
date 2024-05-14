@@ -1,0 +1,54 @@
+<br/>
+<!-- <div><button class="btn btn-success float-end" (click)="addEmp()">Add +</button></div> -->
+<ng-container *ngIf="authService.isLoggedIn() && dataService.employee.data && dataService.employee.data.length > 0; else noTable">
+<div><button class="btn btn-success float-end" routerLink="/employees/add">Add +</button></div>
+
+<table class="table">
+<thead>
+<tr>
+<th>ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Salary</th>
+<th>View</th>
+<th>Delete</th>
+<th>Update</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let emp of dataService.employee.data;
+let i = index;
+let o = odd;
+let e = even;" class="gap-3"
+[ngClass]="{ 'bg-light': e }"
+[ngStyle] ="{'color': o ? 'blue' : 'black'}"
+>
+
+<td>{{emp.id}}</td>
+<!-- <td>{{i+1}}</td> -->
+<td>{{emp.firstName}}</td>
+<td>{{emp.lastName}}</td>
+<td>{{emp.salary}}</td>
+<!-- <td><button class="btn btn-primary" (click)="onView(emp.id)">view</button></td> -->
+<td><button class="btn btn-primary" routerLink="view/{{emp.id}}">view</button></td>
+<td><button class="btn btn-danger" (click)="onDelete(emp.id)">Delete</button></td>
+<td><button class="btn btn-warning text-light" routerLink="update/{{emp.id}}">Update</button></td>
+
+</tr>
+</tbody>
+</table>
+</ng-container>
+<br/>
+<div>
+    <!-- <app-employee-new></app-employee-new> -->
+    <!-- <app-employee-update></app-employee-update> -->
+    <router-outlet></router-outlet>
+</div>
+<ng-template #noTable>
+    <div class="text-center">
+        <h5 class="text-warning">No result found!</h5>
+    </div>
+</ng-template>
+<!-- <button (click)="findAll()">Find All Employees</button> -->
+   
+
